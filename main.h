@@ -5,8 +5,9 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-/* PORTFOLIOS */
+/* PROTOTYPES */
 int _printf(const char *format, ...);
+int strings(int written, va_list ap);
 
 
 

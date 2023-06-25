@@ -7,49 +7,34 @@
 /**
  * _printf - Our printf function
  * @format: Specifying the format expected in standard output
- *
  * Return: Always 0
  */
 
 int _printf(const char *format, ...)
 {
 	va_list ap;
-	int i, written = 0;
+	int written = 0;
 	const char *c = format;
-	va_start(ap, format);
+	char chc;
 
+	va_start(ap, format);
 	for (; *c != '\0'; c++)
 	{
 		if (*c == '%')
 		{
-			/* Move past the '%' */
-			c++;
-
+			c++; /* Move past the '%' */
 			if (*c == '\0')
-			{
-				/* Unexpected end of format string */
-				break;
-			}
-
+				break; /* Unexpected end of format string */
 			if (*c ==  '%')
 			{
-				/* Handle "%%" case */
-				write(1, "%", 1);
+				write(1, "%", 1); /* Handle "%%" case */
 				written++;
 			}
 			else if (*c == 's')
-			{
-				/* Handle string format specifier */
-				char *str = va_arg(ap, char*);
-				i = 0;
-				while (str[i] != '\0')
-					i++;
-				written += write(1, str, i);
-			}
+				written = strings(written, ap); /* Handle string format */
 			else if (*c == 'c')
 			{
-				/* Handle for character format specifier */
-				char chc = va_arg(ap, int);
+				chc = va_arg(ap, int); /* Handle for character format*/
 				written += write(1, &chc, 1);
 			}
 			else
@@ -59,13 +44,10 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			/* Regular character, write it to stdout */
-			write(1, c, 1);
+			write(1, c, 1); /* Regular character, write it to stdout */
 			written++;
 		}
-
 	}
 	va_end(ap);
-
 	return (written);
 }
