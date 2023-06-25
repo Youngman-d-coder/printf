@@ -6,8 +6,9 @@
 
 /**
  * strings- Our printf function
- * @format: Specifying the format expected in standard output
- * Return: Always 0
+ * @written: the variable argument counter
+ * @ap: argument parameters
+ * Return: written as integer
  */
 
 int strings(int written, va_list ap)
