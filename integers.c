@@ -2,7 +2,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <unistd.h>
-
+#include <stdlib.h>
 /**
  * integer_counter - checks length of integer
  *
@@ -31,32 +31,26 @@ int integer_counter(int num)
 /**
  * int_to_str - converts int to str
  *
- * @buffer: pointer to string
  * @num: number to be converted
  *
  * Return: nothing
  */
-char* int_to_str(char *buffer, int num)
+char *int_to_str(int num)
 {
 	int i, l, dig, start, end;
 	char temp;
-	char* buffer;
+	char *buffer;
 
 	l = integer_counter(num);
-	buffer = (char*)malloc((l + 1) * sizeof(char));
-
+	buffer = (char *)malloc((l + 1) * sizeof(char));
 	if (buffer == NULL)
-	{
 		return (NULL); /* Failed to allocate memory */
-	}
-
 	if (num == 0)
 	{
 		buffer[0] = '0';
 		buffer[1] = '\n';
-		return;
+		return (buffer);
 	}
-
 	i = 0;
 	if (num < 0)
 	{
@@ -64,7 +58,6 @@ char* int_to_str(char *buffer, int num)
 		i++;
 		num = -num;
 	}
-
 	while (num != 0)
 	{
 		dig = num % 10;
@@ -72,9 +65,7 @@ char* int_to_str(char *buffer, int num)
 		num /= 10;
 		i++;
 	}
-
 	buffer[l] = '\0';
-
 	start = (buffer[0] == '-') ? 1 : 0;
 	end = l - 1;
 	while (start < end)
@@ -98,18 +89,13 @@ char* int_to_str(char *buffer, int num)
  */
 int int_spec(int written, va_list ap)
 {
-	int len, num = va_args(ap, int);
-	char* buffer = int_to_str(num);
+	int len, num = va_arg(ap, int);
+	char *buffer = int_to_str(num);
 
 	if (buffer == NULL)
-	{
 		return (written);
-	}
-
 	len = integer_counter(num);
 	written += write(1, buffer, len);
-
 	free(buffer);
-
 	return (written);
 }

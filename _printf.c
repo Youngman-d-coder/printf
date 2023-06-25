@@ -1,6 +1,8 @@
 #include "main.h"
 #include <stdio.h>
 #include <stdarg.h>
+#include <unistd.h>
+
 /**
  * _printf - Our printf function
  * @format: Specifying the format expected in standard output
@@ -22,7 +24,7 @@ int _printf(const char *format, ...)
 			c++; /* Move past the '%' */
 			if (*c == '\0')
 				break; /* Unexpected end of format string */
-			if (*c ==  '%')
+			if (*c == '%')
 			{
 				write(1, "%", 1); /* Handle "%%" case */
 				written++;
@@ -34,6 +36,8 @@ int _printf(const char *format, ...)
 				chc = va_arg(ap, int); /* Handle for character format*/
 				written += write(1, &chc, 1);
 			}
+			else if (*c == 'd' || *c == 'i')
+				written = int_spec(written, ap); /* Handle integer format */
 			else
 			{
 				/* Unsupported format specifier, ignore */
