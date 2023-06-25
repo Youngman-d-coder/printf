@@ -1,6 +1,8 @@
 #include "main.h"
 #include <stdio.h>
 #include <stdarg.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 /**
  * _printf - Our printf function
@@ -12,11 +14,11 @@
 int _printf(const char *format, ...)
 {
 	va_list ap;
-	int written = 0;
+	int i, written = 0;
+	const char *c = format;
 	va_start(ap, format);
-	int i;
 
-	for (const char *c = format; *c != '\0'; c++)
+	for (; *c != '\0'; c++)
 	{
 		if (*c == '%')
 		{
@@ -39,8 +41,16 @@ int _printf(const char *format, ...)
 			{
 				/* Handle string format specifier */
 				char *str = va_arg(ap, char*);
-				for (i = 0; str[i] != '\0'; i++)
+				i = 0;
+				while (str[i] != '\0')
+					i++;
 				written += write(1, str, i);
+			}
+			else if (*c == 'c')
+			{
+				/* Handle for character format specifier */
+				char chc = va_arg(ap, int);
+				written += write(1, &chc, 1);
 			}
 			else
 			{
