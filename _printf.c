@@ -36,6 +36,10 @@ int _printf(const char *format, ...)
 				chc = va_arg(ap, int); /* Handle for character format*/
 				written += write(1, &chc, 1);
 			}
+			else if (*c == 'b')
+			{
+				written = dec_to_bin(written, ap); /* Handle binary conversion from decimal */
+			}
 			else if (*c == 'd' || *c == 'i')
 				written = int_spec(written, ap); /* Handle integer format */
 			else
