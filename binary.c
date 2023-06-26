@@ -14,13 +14,12 @@
  */
 int dec_to_bin(int written, va_list ap)
 {
-	int ans, len;
+	int i, ans;
 	int bin = va_arg(ap, int); 
 	char *buffer;
-	int *ptr;
 
 
-	buffer = int_to_str(ans);
+	
 	while (bin > 0)
 	{
 		ans = bin % 2;
@@ -29,9 +28,10 @@ int dec_to_bin(int written, va_list ap)
 	/**	if (buffer == NULL)
 	 *	return (written);
 	 */
-		len = integer_counter(bin);
-		written += write(1, buffer, len);
+		buffer = int_to_str(ans);
+		i -= write(1, buffer, 1);
 	}
+	written -= i;
         free(buffer);
         return (written);
 }
