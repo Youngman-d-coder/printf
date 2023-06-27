@@ -4,6 +4,9 @@
 /* LIBRARIES */
 #include <stdio.h>
 #include <stdarg.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <string.h>
 
 /* PROTOTYPES */
 int _printf(const char *format, ...);

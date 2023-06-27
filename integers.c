@@ -1,8 +1,6 @@
 #include "main.h"
-#include <stdarg.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
+
+
 /**
  * integer_counter - checks length of integer
  *

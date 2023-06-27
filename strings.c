@@ -1,8 +1,4 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdarg.h>
-#include <stdlib.h>
-#include <unistd.h>
 
 /**
  * strings- Our printf function

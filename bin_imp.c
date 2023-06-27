@@ -1,8 +1,4 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdarg.h>
-#include <stdlib.h>
-#include <unistd.h>
 
 /**
  * bin_convert - Binary conversion implementer
