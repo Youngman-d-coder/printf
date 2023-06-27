@@ -5,43 +5,82 @@
 #include <stdarg.h>
 
 /**
+ * reverse_string - Function to reverse an input string
+ *
+ * @str: The string to be reversed
+ * @length: length of the string
+ *
+ * Return: Nothing
+ */
+
+void reverse_string(char *str, int length);
+/**
  * dec_to_bin - converts decimal to binary
  *
- * @written: argument counter
- * @ap: argument parameter
+ * @bin: the decimal to be converted to binary
  *
  * Return: written as integer
  */
-int dec_to_bin(int written, va_list ap)
+
+char *dec_to_bin(unsigned int bin)
 {
-	int ans, i = 0, j, temp;
-	int bin = va_arg(ap, int); 
-	char *buffer;
+	int i = 0;
+	int j;
+	unsigned int temp;
+	char *ptr;
 
-
+	if (bin == 0)
+	{
+		ptr = malloc(2 * sizeof(char));
+		if (ptr == NULL)
+			return (NULL);
+		ptr[0] = '0';
+		ptr[1] = '\0';
+		return (ptr);
+	}
+	temp = bin;
+	while (temp > 0)
+	{
+		i++;
+		temp /= 2;
+	}
+	ptr = malloc(sizeof(char) * (i + 1));
+	if (ptr == NULL)
+		return (NULL);
+	j = 0;
 	while (bin > 0)
 	{
-		ans = bin % 2;
+		ptr[j] = (bin % 2) + '0';
 		bin = bin / 2;
-
-	/**	if (buffer == NULL)
-	 *	return (written);
-	 */
-		buffer = int_to_str(ans);
-		i += write(1, buffer, 1);
+		j++;
 	}
+	ptr[j] = '\0';
 
-	j = i;
+	reverse_string(ptr, i); /* Reverse the binary string */
+	return (ptr);
+}
+/**
+ * reverse_string - Function to reverse an input string
+ *
+ * @str: The string to be reversed
+ * @length: length of the string
+ *
+ * Return: Nothing
+ */
 
-	while (j > i)
+void reverse_string(char *str, int length)
+{
+	int start = 0;
+	int end = length - 1;
+	char temp;
+
+	while (start < end)
 	{
-		temp = buffer[i];
-		buffer[i] = buffer[j];
-		buffer[j] = temp;
-		i++;
-		j--;
+		temp = str[start];
+		str[start] = str[end];
+		str[end] = temp;
+
+		start++;
+		end--;
 	}
-	written += j;
-        free(buffer);
-        return (written);
 }

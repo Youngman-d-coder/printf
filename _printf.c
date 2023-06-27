@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 /**
  * _printf - Our printf function
@@ -37,15 +38,10 @@ int _printf(const char *format, ...)
 				written += write(1, &chc, 1);
 			}
 			else if (*c == 'b')
-			{
-				written = dec_to_bin(written, ap); /* Handle binary conversion from decimal */
-			}
+				written = bin_convert(written, ap);/* Handle binary format specifier */
 			else if (*c == 'd' || *c == 'i')
 				written = int_spec(written, ap); /* Handle integer format */
-			else
-			{
-				/* Unsupported format specifier, ignore */
-			}
+			/* else : Unsupported format specifier, ignore */
 		}
 		else
 		{
