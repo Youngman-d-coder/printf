@@ -48,6 +48,8 @@ int _printf(const char *format, ...)
 				written = low_hex_conv(written, ap); /* Handle lowercase hexadecimal */
 			else if (*c == 'X')
 				written = cap_hex_conv(written, ap); /* Handle for uppercase hexadecimal */
+			else if (*c == 'p')
+				written = address_print(written, ap); /*Handle printing of addresses */
 			/* else : Unsupported format specifier, ignore */
 		}
 		else

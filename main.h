@@ -27,7 +27,8 @@ int low_hex_conv(int written, va_list ap);
 int rev_strings(int written, va_list ap);
 char *rev_str(char *str);
 int _strlen(const char *str);
-
+int address_print(int written, va_list ap);
+int pointer_writer(void *ptr);
 
 
 

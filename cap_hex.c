@@ -24,7 +24,7 @@ char *dec_to_up_hex(unsigned int hex)
 		return (ptr);
 	}
 
-	temp = hex;
+temp = hex;
 	while (temp > 0)
 	{
 		i++;
