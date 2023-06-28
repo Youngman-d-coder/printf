@@ -29,6 +29,8 @@ int _printf(const char *format, ...)
 			}
 			else if (*c == 's')
 				written = strings(written, ap); /* Handle string format */
+			else if (*c == 'r')
+				written = rev_strings(written, ap); /* Handles string reverse */
 			else if (*c == 'c')
 			{
 				chc = va_arg(ap, int); /* Handle for character format*/
@@ -38,6 +40,14 @@ int _printf(const char *format, ...)
 				written = bin_convert(written, ap);/* Handle binary format specifier */
 			else if (*c == 'd' || *c == 'i')
 				written = int_spec(written, ap); /* Handle integer format */
+			else if (*c == 'u')
+				written = uns_spec(written, ap); /* Handle unsigned format */
+			else if (*c == 'o')
+				written = oct_convert(written, ap); /* Handle octal format */
+			else if (*c == 'x')
+				written = low_hex_conv(written, ap); /* Handle lowercase hexadecimal */
+			else if (*c == 'X')
+				written = cap_hex_conv(written, ap); /* Handle for uppercase hexadecimal */
 			/* else : Unsupported format specifier, ignore */
 		}
 		else

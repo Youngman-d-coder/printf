@@ -1,16 +1,6 @@
 #include "main.h"
 
 /**
- * reverse_string - Function to reverse an input string
- *
- * @str: The string to be reversed
- * @length: length of the string
- *
- * Return: Nothing
- */
-
-void reverse_string(char *str, int length);
-/**
  * dec_to_bin - converts decimal to binary
  *
  * @bin: the decimal to be converted to binary
