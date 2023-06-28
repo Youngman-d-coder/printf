@@ -29,6 +29,9 @@ char *rev_str(char *str);
 int _strlen(const char *str);
 int address_print(int written, va_list ap);
 int pointer_writer(void *ptr);
+int uns_integer_counter(unsigned int num);
+char *uns_int_to_str(unsigned int num);
+int uns_int_spec(int written, va_list ap);
 
 
 

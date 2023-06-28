@@ -10,17 +10,19 @@
  */
 int uns_spec(int written, va_list ap)
 {
-	int l;
+	int l, i = 0;
 	unsigned int num = va_arg(ap, unsigned int);
-	char *buffer = int_to_str(num);
+	char *buffer;
 
+	buffer = uns_int_to_str(num);
 	if (buffer == NULL)
 		return (written);
 
-	l = integer_counter(num);
-	written += write(1, buffer, l);
+	l = uns_integer_counter(num);
+	i += write(1, buffer, l);
+		free(buffer);
 
-	free(buffer);
+	written += i;
 	return (written);
 }
 
