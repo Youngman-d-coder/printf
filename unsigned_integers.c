@@ -39,7 +39,7 @@ char *uns_int_to_str(unsigned int num)
 	char temp;
 	char *buffer;
 
-	l = integer_counter(num);
+	l = uns_integer_counter(num);
 	buffer = (char *)malloc((l + 1) * sizeof(char));
 	if (buffer == NULL)
 		return (NULL); /* Failed to allocate memory */
@@ -64,7 +64,7 @@ char *uns_int_to_str(unsigned int num)
 		i++;
 	}
 	buffer[l] = '\0';
-	start = (buffer[0] == '-') ? 1 : 0;
+	start = 0;
 	end = l - 1;
 	while (start < end)
 	{
@@ -92,7 +92,7 @@ int uns_int_spec(int written, va_list ap)
 
 	if (buffer == NULL)
 		return (written);
-	len = integer_counter(num);
+	len = uns_integer_counter(num);
 	written += write(1, buffer, len);
 	free(buffer);
 	return (written);
