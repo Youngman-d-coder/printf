@@ -17,7 +17,11 @@ int integer_counter(int num)
 		l++; /* Account for the negative sign */
 		num = -num; /* Convert negative number to positive */
 	}
-
+	if (num == 0)
+	{
+		l++;
+		return (l);
+	}
 	while (num != 0)
 	{
 		l++;
