@@ -12,7 +12,6 @@ int _printf(const char *format, ...)
 	va_list ap;
 	int written = 0;
 	const char *c = format;
-	char chc;
 
 	va_start(ap, format);
 	for (; *c != '\0'; c++)
@@ -31,26 +30,10 @@ int _printf(const char *format, ...)
 				written = strings(written, ap); /* Handle string format */
 			else if (*c == 'r')
 				written = rev_strings(written, ap); /* Handles string reverse */
-			else if (*c == 'c')
+			else
 			{
-				chc = va_arg(ap, int); /* Handle for character format*/
-				written += write(1, &chc, 1);
-			}
-			else if (*c == 'b')
-				written = bin_convert(written, ap);/* Handle binary format specifier */
-			else if (*c == 'd' || *c == 'i')
-				written = int_spec(written, ap); /* Handle integer format */
-			else if (*c == 'u')
-				written = uns_spec(written, ap); /* Handle unsigned format */
-			else if (*c == 'o')
-				written = oct_convert(written, ap); /* Handle octal format */
-			else if (*c == 'x')
-				written = low_hex_conv(written, ap); /* Handle lowercase hexadecimal */
-			else if (*c == 'X')
-				written = cap_hex_conv(written, ap); /* Handle for uppercase hexadecimal */
-			else if (*c == 'p')
-				written = address_print(written, ap); /*Handle printing of addresses */
-			/* else : Unsupported format specifier, ignore */
+				written = _printf_continued(c, written, ap);
+			} /* To handle other format specifiers */
 		}
 		else
 		{
@@ -59,5 +42,39 @@ int _printf(const char *format, ...)
 		}
 	}
 	va_end(ap);
+	return (written);
+}
+/**
+ * _printf_continued - Continuation of the main function
+ * @cc: format expected
+ * @written: argument counter
+ * @ap: argument parameter
+ * Return: Always 0
+ */
+int _printf_continued(const char *cc, int written, va_list ap)
+{
+	const char *c = cc;
+	char chc;
+
+	if (*c == 'u')
+		written = uns_spec(written, ap);
+	else if (*c == 'c')
+	{
+		chc = va_arg(ap, int); /* Handle for character format*/
+		written += write(1, &chc, 1);
+	}
+	else if (*c == 'b')
+		written = bin_convert(written, ap);/* Handle binary format specifier */
+	else if (*c == 'd' || *c == 'i')
+		written = int_spec(written, ap); /* Handle integer format */
+	else if (*c == 'o')
+		written = oct_convert(written, ap); /* Handle octal format */
+	else if (*c == 'x')
+		written = low_hex_conv(written, ap); /* Handle lowercase hexadecimal */
+	else if (*c == 'X')
+		written = cap_hex_conv(written, ap); /* Handle for uppercase hexadecimal */
+	else if (*c == 'p')
+		written = address_print(written, ap); /*Handle printing of addresses */
+
 	return (written);
 }
