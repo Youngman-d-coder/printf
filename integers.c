@@ -46,7 +46,7 @@ char *int_to_str(int num)
 	if (num == 0)
 	{
 		buffer[0] = '0';
-		buffer[1] = '\n';
+		buffer[1] = '\0';
 		return (buffer);
 	}
 	i = 0;
