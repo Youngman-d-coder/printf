@@ -19,7 +19,7 @@ int _strlen(const char *str)
 }
 
 /**
- * reverse_string - Reverses a string
+ * rev_str - Reverses a string
  * @str: The string to reverse
  *
  * Return: The reversed string

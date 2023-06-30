@@ -36,6 +36,9 @@ int uns_integer_counter(unsigned int num);
 char *uns_int_to_str(unsigned int num);
 int uns_int_spec(int written, va_list ap);
 int _printf_continued(const char *cc, int written, va_list ap);
+int signed_integer_counter(int num);
+char *signed_int_to_str(int num);
+int signed_int_spec(int written, va_list ap);
 
 
 

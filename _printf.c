@@ -75,6 +75,14 @@ int _printf_continued(const char *cc, int written, va_list ap)
 		written = cap_hex_conv(written, ap); /* Handle for uppercase hexadecimal */
 	else if (*c == 'p')
 		written = address_print(written, ap); /*Handle printing of addresses */
+	else if (*c == '+')
+	{
+		c++;
+		if (*c == 'd' || *c == 'i' || *c == 'f')
+			written = signed_int_spec(written, ap); /* Handle signs in stdout */
+	}
+	else
+		write(1, c, 1); /* Regular character, write it to stdout */
 
 	return (written);
 }
