@@ -2,13 +2,13 @@
 
 
 /**
- * integer_counter - checks length of integer
+ * signed_integer_counter - checks length of integer
  *
  * @num: integer to be counted
  *
  * Return: length as integer
  */
-int integer_counter(int num)
+int signed_integer_counter(int num)
 {
 	int l = 0;
 
@@ -31,19 +31,19 @@ int integer_counter(int num)
 }
 
 /**
- * int_to_str - converts int to str
+ * signed_int_to_str - converts int to str
  *
  * @num: number to be converted
  *
  * Return: nothing
  */
-char *int_to_str(int num)
+char *signed_int_to_str(int num)
 {
 	int i, l, dig, start, end;
 	char temp;
 	char *buffer;
 
-	l = integer_counter(num);
+	l = signed_integer_counter(num);
 	buffer = (char *)malloc((l + 1) * sizeof(char));
 	if (buffer == NULL)
 		return (NULL); /* Failed to allocate memory */
@@ -60,6 +60,11 @@ char *int_to_str(int num)
 		i++;
 		num = -num;
 	}
+	else if (num > 0)
+	{
+		buffer[0] = '+';
+		i++;
+	}
 	while (num != 0)
 	{
 		dig = num % 10;
@@ -68,7 +73,7 @@ char *int_to_str(int num)
 		i++;
 	}
 	buffer[l] = '\0';
-	start = (buffer[0] == '-') ? 1 : 0;
+	start = 1;
 	end = l - 1;
 	while (start < end)
 	{
@@ -82,21 +87,21 @@ char *int_to_str(int num)
 }
 
 /**
- * int_spec - handles integer format
+ * signed_int_spec - handles integer format
  *
  * @written: argument counter
  * @ap: argument parameter
  *
  * Return: written as integer
  */
-int int_spec(int written, va_list ap)
+int signed_int_spec(int written, va_list ap)
 {
 	int len, num = va_arg(ap, int);
-	char *buffer = int_to_str(num);
+	char *buffer = signed_int_to_str(num);
 
 	if (buffer == NULL)
 		return (written);
-	len = integer_counter(num);
+	len = signed_integer_counter(num);
 	written += write(1, buffer, len);
 	free(buffer);
 	return (written);

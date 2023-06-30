@@ -14,7 +14,13 @@ int address_print(int written, va_list ap)
 	int len = 0;
 
 	ptr = va_arg(ap, void*);
-	len += write(1, "0x", 2);
+	if (ptr == NULL){
+		len += write(1,"(nil)", 5);
+	}
+	else
+	{
+		len += write(1, "0x", 2);
+	}
 	len += pointer_writer(ptr);
 	written += len;
 	return (written);

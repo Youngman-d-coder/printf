@@ -23,10 +23,9 @@ int cap_hex_conv(int written, va_list ap)
 		{
 			len++;
 		}
-		
 		i += write(1, hex, len);
 		free(hex);
 	}
 	written += i;
 	return (written);
-}       
+}

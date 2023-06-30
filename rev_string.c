@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * rev_strings- Our printf function
+ * rev_strings - Our printf function
  * @written: the variable argument counter
  * @ap: argument parameters
  * Return: written as integer
