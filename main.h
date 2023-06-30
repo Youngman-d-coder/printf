@@ -8,6 +8,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+/* FLAGS */
+#define BUFF_SIZE 1024
+
 /* PROTOTYPES */
 int _printf(const char *format, ...);
 int strings(int written, va_list ap);
