@@ -8,14 +8,14 @@
  */
 int _strlen(const char *str)
 {
-    int len = 0;
+	int len = 0;
 
-    while (str[len] != '\0')
-    {
-        len++;
-    }
+	while (str[len] != '\0')
+	{
+		len++;
+	}
 
-    return (len);
+	return (len);
 }
 
 /**
@@ -26,18 +26,18 @@ int _strlen(const char *str)
  */
 char *rev_str(char *str)
 {
-    int i, j;
-    char temp;
+	int i, j;
+	char temp;
 
-    if (str == NULL)
-        return (NULL);
+	if (str == NULL)
+		return (NULL);
 
-    for (i = 0, j = _strlen(str) - 1; i < j; i++, j--)
-    {
-        temp = str[i];
-        str[i] = str[j];
-        str[j] = temp;
-    }
+	for (i = 0, j = _strlen(str) - 1; i < j; i++, j--)
+	{
+		temp = str[i];
+		str[i] = str[j];
+		str[j] = temp;
+	}
 
-    return (str);
+	return (str);
 }
