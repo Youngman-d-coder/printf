@@ -17,7 +17,7 @@ int space_integer_counter(int num)
 		l++; /* Account for the negative sign */
 		num = -num; /* Convert negative number to positive */
 	}
-	if (num > 0)
+	else if (num > 0)
 	{
 		l++; /* Account for the positive sign */
 		num = num; /* No conversion required */
