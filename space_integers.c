@@ -2,13 +2,13 @@
 
 
 /**
- * signed_integer_counter - checks length of integer
+ * space_integer_counter - checks length of integer
  *
  * @num: integer to be counted
  *
  * Return: length as integer
  */
-int signed_integer_counter(int num)
+int space_integer_counter(int num)
 {
 	int l = 0;
 
@@ -36,33 +36,33 @@ int signed_integer_counter(int num)
 }
 
 /**
- * signed_int_to_str - converts int to str
+ * space_int_to_str - converts int to str
  *
  * @num: number to be converted
  *
  * Return: nothing
  */
-char *signed_int_to_str(int num)
+char *space_int_to_str(int num)
 {
 	int i, l, dig, start, end;
 	char temp;
 	char *buffer;
 	int *x;
 
-	l = signed_integer_counter(num);
+	l = space_integer_counter(num);
 	buffer = (char *)malloc((l + 1) * sizeof(char));
 	if (buffer == NULL)
 		return (NULL); /* Failed to allocate memory */
 	if (num == 0)
 	{
-		buffer[0] = '+';
+		buffer[0] = ' ';
 		buffer[1] = '0';
 		buffer[2] = '\0';
 		return (buffer);
 	}
 	i = 0;
-	buffer[0] = (num < 0) ? '-' : '+';
-	x = signed_num_size_gen(num, i);
+	buffer[0] = (num < 0) ? '-' : ' ';
+	x = space_num_size_gen(num, i);
 	num = x[0];
 	i = x[1];
 	while (num != 0)
@@ -86,14 +86,14 @@ char *signed_int_to_str(int num)
 	return (buffer);
 }
 /**
- * signed_num_size_gen - to check for the size of a number
+ * space_num_size_gen - to check for the size of a number
  * @num: the number whose size is searched for
  * @i: counter
  *
  * Return: Integer pointer
  */
 
-int *signed_num_size_gen(int num, int i)
+int *space_num_size_gen(int num, int i)
 {
 	int *res;
 
@@ -115,21 +115,21 @@ int *signed_num_size_gen(int num, int i)
 	return (res);
 }
 /**
- * signed_int_spec - handles integer format
+ * space_int_spec - handles integer format
  *
  * @written: argument counter
  * @ap: argument parameter
  *
  * Return: written as integer
  */
-int signed_int_spec(int written, va_list ap)
+int space_int_spec(int written, va_list ap)
 {
 	int len, num = va_arg(ap, int);
-	char *buffer = signed_int_to_str(num);
+	char *buffer = space_int_to_str(num);
 
 	if (buffer == NULL)
 		return (written);
-	len = signed_integer_counter(num);
+	len = space_integer_counter(num);
 	written += write(1, buffer, len);
 	free(buffer);
 	return (written);

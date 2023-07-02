@@ -14,8 +14,9 @@ int address_print(int written, va_list ap)
 	int len = 0;
 
 	ptr = va_arg(ap, void*);
-	if (ptr == NULL){
-		len += write(1,"(nil)", 5);
+	if (ptr == NULL)
+	{
+		len += write(1, "(nil)", 5);
 	}
 	else
 	{

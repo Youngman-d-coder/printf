@@ -35,11 +35,16 @@ int pointer_writer(void *ptr);
 int uns_integer_counter(unsigned int num);
 char *uns_int_to_str(unsigned int num);
 int uns_int_spec(int written, va_list ap);
-int _printf_continued(const char *cc, int written, va_list ap);
+int _printf_formats1(const char *cc, int written, va_list ap);
 int signed_integer_counter(int num);
 char *signed_int_to_str(int num);
 int signed_int_spec(int written, va_list ap);
-
+int _printf_formats2(const char *cc, int written, va_list ap);
+int space_integer_counter(int num);
+char *space_int_to_str(int num);
+int space_int_spec(int written, va_list ap);
+int *signed_num_size_gen(int num, int i);
+int *space_num_size_gen(int num, int i);
 
 
 
